@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom overrides */
-html {
-  scroll-behavior: smooth;
+/* Custom Colors */
+:root {
+  --color-accent: #00C1D4;
+  --color-dark: #0F172A;
 }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
