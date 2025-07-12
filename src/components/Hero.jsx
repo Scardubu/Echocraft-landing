@@ -1,17 +1,33 @@
 import React from 'react';
-import logo from '../assets/logo.svg';
+import { motion } from 'framer-motion';
+import { fadeUp } from './animations';
+import bg from '../assets/hero-bg.jpg';
 
 export default function Hero() {
   return (
-    <section className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-700 flex flex-col justify-center items-center text-center p-6">
-      <img src={logo} alt="Echocraft Logo" className="w-32 mb-6" />
-      <h1 className="text-5xl font-bold text-white mb-4">
-        Empowering Your Vision with Intelligent Automation
-      </h1>
-      <p className="text-lg text-blue-200 max-w-xl">
-        From AI-driven analytics to blockchain-powered workflows, we architect and
-        automate your entire stack—so you can focus on growth, not glue code.
-      </p>
+    <section
+      className="relative min-h-screen flex items-center"
+      style={{ background: `url(${bg}) center/cover no-repeat` }}
+    >
+      <div className="absolute inset-0 bg-dark/60"></div>
+      <motion.div
+        className="container mx-auto relative z-10 text-center text-white py-40 px-6"
+        initial="hidden"
+        whileInView="visible"
+        variants={fadeUp}
+      >
+        <h1 className="text-6xl font-extrabold mb-4">Echo Your Vision in Code</h1>
+        <p className="text-xl mb-8">
+          We build AI, blockchain, and automation pipelines that elevate your business.
+        </p>
+        <motion.a
+          href="#services"
+          className="inline-block px-10 py-4 bg-accent rounded-full font-semibold hover:bg-accent/90 transition"
+          whileHover={{ scale: 1.05 }}
+        >
+          Explore Services
+        </motion.a>
+      </motion.div>
     </section>
   );
 }
