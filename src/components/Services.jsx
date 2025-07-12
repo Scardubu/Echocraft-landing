@@ -1,24 +1,38 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer } from './animations';
+import { Code, Database, Shield, Cloud } from 'lucide-react';
 
 const services = [
-  { title: 'Solutions Architecture', desc: 'Holistic system design aligned with your goals.' },
-  { title: 'AI & Data Automation', desc: 'Predictive pipelines and real-time dashboards.' },
-  { title: 'Blockchain & Smart Contracts', desc: 'Secure, optimized contracts & integration.' },
-  { title: 'DevOps & CI/CD', desc: 'Automated deployments and infrastructure as code.' }
+  { icon: Code, title: 'Architecture', desc: 'Blueprints to scale.' },
+  { icon: Database, title: 'Data Automation', desc: 'From raw to insight.' },
+  { icon: Shield, title: 'Smart Contracts', desc: 'Secure & auditable.' },
+  { icon: Cloud, title: 'DevOps', desc: 'CI/CD & infra as code.' },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 bg-white px-6">
-      <h2 className="text-4xl font-bold text-center mb-12">Our Signature Services</h2>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
-        {services.map((s) => (
-          <div key={s.title} className="p-6 border rounded-lg shadow-sm hover:shadow-lg transition">
-            <h3 className="text-2xl font-semibold mb-2">{s.title}</h3>
-            <p className="text-gray-600">{s.desc}</p>
-          </div>
+    <motion.section
+      id="services"
+      className="container mx-auto py-20 px-6"
+      initial="hidden"
+      whileInView="visible"
+      variants={staggerContainer}
+    >
+      <h2 className="text-4xl font-bold text-center mb-12 text-dark">Signature Services</h2>
+      <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        {services.map(({ icon: Icon, title, desc }) => (
+          <motion.div
+            key={title}
+            className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl transition"
+            variants={fadeUp}
+          >
+            <Icon className="mx-auto mb-4 text-accent" size={48} />
+            <h3 className="text-2xl font-semibold mb-2">{title}</h3>
+            <p className="text-gray-600">{desc}</p>
+          </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
